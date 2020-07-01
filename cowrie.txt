@@ -2,11 +2,20 @@
 This is a basic guide of how to install and run Cowrie.
 
 ## Install
-The docker-cowrie github repository is already cloned for us. You can run Cowrie by running the following.
+The docker-cowrie github repository is already cloned for us. We need to change Docker to listen on port 22 instead of 2222.
+Change the docker-compose file `~/docker-cowrie/docker-compose.yml` using `vim` or `nano`. The port section should be as follows:
+```
+    ports:
+      - "22:2222"
+      - "23:2223"
+```
+
+Now you can run Cowrie by running the following.
 ```
 cd ~/docker-cowrie
 docker-compose up
 ```
+
 If you want to stop the running container you will need to press `ctrl+c` to cancel.
 
 ## Configuring Cowrie
@@ -20,7 +29,6 @@ sudo cp /var/lib/docker/volumes/cowrie_cowrie-etc/_data/userdb.example /var/lib/
 # Exercises
 ## Fake an attack against the honeypot
 - SSH to the server using credentials in your userdb. Try pulling down a file from the internet using wget and exit the shell.
-- Remember that Cowrie is listening on port 2222 for this tutorial. Use the ssh option `-p 2222`.
 
 ## View the honeypot output
 - Review the honeypot report log and dumped files.
