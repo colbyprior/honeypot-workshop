@@ -40,6 +40,7 @@ sudo ls -l /var/lib/docker/volumes/cowrie_cowrie-var/_data/lib/cowrie/downloads/
 
 ## Make your honeypot "sweeter"
 - Try configuring a non-default hostname, kernel version, ssh version for the honeypot.
+- Also change the usernames and passwords that the honeypot accepts in the `userdb.txt`.
 
 # Elasticsearch and Kibana
 Elasticsearch and Kibana have already been insalled using apt.
@@ -97,3 +98,15 @@ Now you can go to the Discover tab and review your data.
 Try creating a data table or pie graph showing top attacker addresses, username, passwords and/or download filehashes.
 
 If you get an attacker connect please be careful with dropped files. Look up their filehashes in VirusTotal.
+
+# Enable telnet
+In the `cowrie.cfg` look for the setting to enable telnet. Enable it and restart the docker container.
+
+Connect to your server using telnet on port 23.
+
+# Submittting malware samples to MISP
+- Uncomment the output_misp module in `cowrie.cfg`.
+- Replace the base_url and api_key with the ones provided.
+- For the purposes of this tutorial only, disable verify_cert.
+- Restart the docker container.
+- Connect to the honeypot and pull down a file via wget. The file should be pushed to a MISP event.
