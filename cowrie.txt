@@ -48,12 +48,13 @@ Elasticsearch and Kibana have already been insalled using apt.
 ## Configure Kibana
 We need to configure Kibana to listen on an IP that we can access. You should use the private IP address from your server hostname.
 ```
-sudo vim /etc/kibana.yml
+sudo vim /etc/kibana/kibana.yml
 # > server.host: "<IP>" 
-systemctl start elasticsearch
-systemctl start kibana
+sudo systemctl start elasticsearch
+sudo systemctl start kibana
 ```
 
+Note: Kibana can take a minute to start up.
 You should now be able to access kibana via `http://<Public_IP>:5601`.
 
 ## Configure Filebeat
@@ -75,10 +76,11 @@ filebeat.inputs:
         fields:
           - from: "url"
             to: "cowrie.url"
+        ignore_missing: true
 ```
 
 Finally start the Filebeat service.
-`systemctl restart filebeat`
+`sudo systemctl restart filebeat`
 
 ## Set up the elasticsearch patterns
 1. Go to Kibana in a web browser.

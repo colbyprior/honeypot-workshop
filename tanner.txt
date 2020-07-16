@@ -30,12 +30,15 @@ docker-compose up
 - The page should show a SQL Error message when you succresfully trigger the emulator.
 - If you need a hint you can look at https://github.com/client9/libinjection for some hints.
 
-###
+### Viewing data
 - Follow the Elasticsearch and Kibana setup as below first to make observing the logs easier for this.
 - Look inside of the Tanner config file `~/tanner/docker/tanner/dist/config.yaml` to see what emulators we have enabled by default.
 
 ### Trigger RFI attack
-Check the file pulled down 
+Check the file pulled down by tanner after the RFI attack.
+
+### Trigger a XSS attack
+Try injecting a javascript alert.
 
 ## Elasticsearch and Kibana setup
 Add the following log config to the `filebeat.inputs:` section in `/etc/filebeat/filebeat.yml`.
