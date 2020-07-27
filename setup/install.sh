@@ -2,7 +2,7 @@
 
 # install
 sudo apt update
-sudo apt install -y docker.io docker-compose jq git
+sudo apt install -y docker.io docker-compose jq git nano sqlite3
 
 # clone repos
 git clone https://github.com/cowrie/docker-cowrie
@@ -10,6 +10,7 @@ git clone https://github.com/cowrie/cowrie.git
 git clone https://github.com/buffer/thug.git
 git clone https://github.com/mushorg/snare.git
 git clone https://github.com/mushorg/tanner.git
+git clone https://github.com/colbyprior/honeypot-workshop.git
 
 # elasticsearch setup
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.7.0-amd64.deb
