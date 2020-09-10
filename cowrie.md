@@ -81,13 +81,12 @@ Finally start the Filebeat service.
 ## 3.2 Set up the elasticsearch patterns
 1. Go to Kibana in a web browser.
 2. Select "Use my own data"
-3. Go to Management (Cog wheel in left menu)
-4. Go to Index Patterns
-5. Select Create Index Pattern
-6. Type in `filebeat-*` as your pattern
-7. Select Next step
-8. Choose `@timestamp` as your Time Filter field name
-9. Select Create index pattern
+3. In the left menu go to Discover
+4. Select Create Index Pattern
+5. Type in `filebeat-*` as your pattern
+6. Select Next step
+7. Choose `@timestamp` as your Time Filter field name
+8. Select Create index pattern
 
 ## 3.3 Playing with data
 
