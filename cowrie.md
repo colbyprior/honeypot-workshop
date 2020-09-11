@@ -21,6 +21,8 @@ If you want to stop the running container you will need to press `ctrl+c` to can
 ## 1.2 Configuring Cowrie
 There are some default config files we can copy into our docker mount. Note we may need sudo permissions to view this folder.
 
+If you are having permissions problems then run `sudo chown -R ubuntu /var/lib/docker/volumes`. This isn't good practice but it's just a workshop.
+
 ```
 cp ~/volumes/cowrie_cowrie-etc/_data/cowrie.cfg.dist ~/volumes/cowrie_cowrie-etc/_data/cowrie.cfg
 cp ~/volumes/cowrie_cowrie-etc/_data/userdb.example ~/volumes/cowrie_cowrie-etc/_data/userdb.txt
