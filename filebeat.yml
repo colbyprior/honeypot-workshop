@@ -1,0 +1,35 @@
+#
+# sudo curl https://raw.githubusercontent.com/colbyprior/honeypot-workshop/master/filebeat.yml | /etc/filebeat/filebeat.yml
+#
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/lib/docker/volumes/cowrie_cowrie-var/_data/log/cowrie/cowrie.json
+  json.keys_under_root: true
+  processors:
+    - decode_json_fields:
+            fields: ["inner"]
+    - rename:
+        fields:
+          - from: "url"
+            to: "cowrie.url"
+        ignore_missing: true
+- type: log
+  enabled: true
+  paths:
+    - /home/ubuntu/tanner/docker/log/tanner_report.json
+  json.keys_under_root: true
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
