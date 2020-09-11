@@ -1,5 +1,5 @@
 #
-# sudo curl https://raw.githubusercontent.com/colbyprior/honeypot-workshop/master/filebeat.yml | /etc/filebeat/filebeat.yml
+# sudo wget -q - https://raw.githubusercontent.com/colbyprior/honeypot-workshop/master/filebeat.yml -O /etc/filebeat/filebeat.yml
 #
 filebeat.inputs:
 - type: log
