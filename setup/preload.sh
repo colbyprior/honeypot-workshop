@@ -6,6 +6,7 @@ docker-compose build
 
 # thug pre-build
 cd ~/thug/docker/
+cp -r ~/thug/tests/samples/ ~/thug/
 # add to dockerfile apt installs:
 #    vim \
 #    jq \
