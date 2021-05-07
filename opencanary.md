@@ -3,14 +3,14 @@
 ## 1.1 Initial setup
 
 
-OpenCanary is started by running:
+First you should enter the Python virtual environment for OpenCanary:
 
 ```
 source ~/env/bin/activate
 cd ~/opencanary
 ```
 
-On the first run, create an opencanary config
+Before the first run, generate a default opencanary config
 ```
 opencanaryd --copyconfig
 ```
