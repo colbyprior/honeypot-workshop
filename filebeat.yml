@@ -20,6 +20,24 @@ filebeat.inputs:
   paths:
     - /home/ubuntu/tanner/docker/log/tanner_report.json
   json.keys_under_root: true
+- type: log
+  enabled: true
+  paths:
+    - /var/tmp/opencanary.log
+  json.keys_under_root: true
+  processors:
+    - decode_json_fields:
+        fields: ["inner"]
+    - rename:
+        fields:
+        - from: "src_host"
+          to: "src_ip"
+        - from: "logdata.PASSWORD"
+          to: "password"
+        - from: "logdata.USERNAME"
+          to: "username"
+        ignore_missing: true
+        fail_on_error: false
 
 setup.template.settings:
   index.number_of_shards: 1

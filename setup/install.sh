@@ -2,7 +2,7 @@
 
 # install
 sudo apt update
-sudo apt install -y docker.io docker-compose jq git nano sqlite3
+sudo apt install -y docker.io docker-compose jq git nano sqlite3 python3-dev python3-pip python3-virtualenv python3-venv python3-scapy samba libpcap-dev
 
 # clone repos
 git clone https://github.com/cowrie/docker-cowrie
@@ -11,6 +11,7 @@ git clone https://github.com/buffer/thug.git
 git clone https://github.com/mushorg/snare.git
 git clone https://github.com/mushorg/tanner.git
 git clone https://github.com/colbyprior/honeypot-workshop.git
+git clone https://github.com/thinkst/opencanary.git
 
 # elasticsearch setup
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.7.0-amd64.deb
@@ -24,3 +25,8 @@ sudo apt-get install elasticsearch kibana -y
 # docker permissions
 sudo usermod -aG docker ${USER}
 newgrp docker
+
+# install opencanary
+virtualenv env/
+. env/bin/activate
+pip install opencanary scapy pcapy
