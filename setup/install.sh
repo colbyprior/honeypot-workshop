@@ -30,3 +30,7 @@ newgrp docker
 virtualenv env/
 . env/bin/activate
 pip install opencanary scapy pcapy
+
+mkdir ~/tanner/docker/log
+chmod 7777 ~/tanner/docker/log
+cp docker-compose_tanner.yml ~/tanner/docker/docker-compose.yml
