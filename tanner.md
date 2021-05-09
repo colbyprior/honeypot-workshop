@@ -35,7 +35,7 @@ Add the following log config to the `filebeat.inputs:` section in `/etc/filebeat
 
 ## 2.1 Refresh the index
 Now we need to make sure the index is refreshed so we can properly search over our new data types.
-1. Restart filebeat `systemctl restart filebeat`
+1. Restart filebeat `sudo systemctl restart filebeat`
 2. Visit Kibana and go in to Management
 3. Select index management
 4. Select your filebeat index
