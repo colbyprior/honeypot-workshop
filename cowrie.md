@@ -4,10 +4,15 @@ This is a basic guide of how to install and run Cowrie.
 ## 1.1 Run Cowrie
 You can run Cowrie by running the following.
 ```
-docker run -p 22:2222 cowrie/cowrie:latest
+docker run -p 22:2222 -v cowrie-log:/cowrie/cowrie-git/var/log/cowrie/ cowrie/cowrie:latest
 ```
 
 If you want to stop the running container you will need to press `ctrl+c` to cancel.
+
+Logs can be viewed via:
+```
+sudo tail /var/lib/docker/volumes/cowrie/_data/cowrie.json
+```
 
 ## 1.2 Configuring Cowrie
 ## Default config
@@ -31,11 +36,11 @@ docker run -p 22:2222 --env-file=env.txt cowrie/cowrie:latest
 - The default userdb is here: https://github.com/cowrie/cowrie/blob/master/etc/userdb.example
 
 ## 2.2 View a downloaded file
-- Run docker using a mount for the downloads dir: `-v cowrie:/cowrie/cowrie-git/var/lib/cowrie/downloads`
+- Run docker using a mount for the downloads dir: `-v cowrie-download:/cowrie/cowrie-git/var/lib/cowrie/downloads`
 - Connect to the honeypot and download a file using wget. The log will output the filehash of the file.
 
 ```
-sudo cat /var/lib/docker/volumes/cow/_data/<filehash>
+sudo cat /var/lib/docker/volumes/cowrie-download/_data/<filehash>
 ```
 
 ## 2.3 Make your honeypot "sweeter"
