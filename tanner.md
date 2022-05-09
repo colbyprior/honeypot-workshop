@@ -24,7 +24,8 @@ docker-compose up
 Try and load your web honeypot.
 
 # 2 Exercises
-Look inside of the Tanner config file `~/tanner/docker/tanner/dist/config.yaml` to see what emulators we have enabled by default.
+- Look inside of the Tanner config file `~/tanner/docker/tanner/dist/config.yaml` to see what emulators we have enabled by default.
+- Emulator doco is here https://tanner.readthedocs.io/en/latest/emulators.html
 
 ## 2.1 Trigger a XSS attack
 Try injecting a javascript alert.
