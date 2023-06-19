@@ -4,14 +4,15 @@ This is a basic guide of how to install and run Cowrie.
 ## 1.1 Run Cowrie
 You can run Cowrie by running the following.
 ```
-docker run -p 22:2222 -v cowrie-log:/cowrie/cowrie-git/var/log/cowrie/ cowrie/cowrie:latest
+cd ~/cowrie/docker/
+docker-compose up
 ```
 
 If you want to stop the running container you will need to press `ctrl+c` to cancel.
 
 Logs can be viewed via:
 ```
-sudo tail /var/lib/docker/volumes/cowrie/_data/cowrie.json
+tail ~/cowrie/docker/cowrie-var/log/cowrie/cowrie.json
 ```
 
 ## 1.2 Configuring Cowrie
@@ -19,15 +20,9 @@ sudo tail /var/lib/docker/volumes/cowrie/_data/cowrie.json
 The default config can be viewed here: https://github.com/cowrie/cowrie/blob/master/etc/cowrie.cfg.dist 
 
 ## Custom config
-- Cowrie docker will read in environment variables under the convention `COWRIE_<SECTION>_<VARIABLE>` eg. `COWRIE_HONEYPOT_HOSTNAME`.
-- Add a custom hostname value as an environment variable in a new file called `env.txt`.
+The Cowrie config file is under `~/cowrie/docker/cowrie-etc/`. Try changing the default hostname
 ```
-COWRIE_HONEYPOT_HOSTNAME=foobar
-```
-
-Run cowrie docker again using the new env file.
-```
-docker run -p 22:2222 --env-file=env.txt cowrie/cowrie:latest
+hostname = svr04
 ```
 
 # 2 Exercises
@@ -36,25 +31,29 @@ docker run -p 22:2222 --env-file=env.txt cowrie/cowrie:latest
 - The default userdb is here: https://github.com/cowrie/cowrie/blob/master/etc/userdb.example
 
 ## 2.2 View a downloaded file
-- Run docker using a mount for the downloads dir: `-v cowrie-download:/cowrie/cowrie-git/var/lib/cowrie/downloads`
 - Connect to the honeypot and download a file using wget. The log will output the filehash of the file.
+- Get the file from the honeypot artifacts.
 
 ```
-sudo cat /var/lib/docker/volumes/cowrie-download/_data/<filehash>
+sudo cat ~/cowrie/docker/cowrie-var/lib/cowrie/downloads/<filehash>
 ```
 
 ## 2.3 Make your honeypot "sweeter"
 - Try configuring a non-default hostname, kernel version, ssh version for the honeypot.
+- Modify the default userdb.
 
 # 3 Enable telnet
 Run cowrie with the extra port mapping and telnet option.
 ```
-docker run -p 22:2222 -p 23:2223 -e COWRIE_TELNET_ENABLED=yes cowrie/cowrie:latest
+[telnet]
+
+# Enable Telnet support, disabled by default
+enabled = true
 ```
 Connect to your server using telnet on port 23.
 
 # 4 Submittting malware samples to MISP
-- Uncomment the output_misp module in `~/volumes/cowrie_cowrie-etc/_data/cowrie.cfg`
+- Uncomment the output_misp module in `~/cowrie/docker/cowrie-etc/cowrie.cfg.dst`
 - Replace the base_url and api_key with the ones provided.
 - For the purposes of this tutorial only, disable verify_cert.
 - Restart the docker container.

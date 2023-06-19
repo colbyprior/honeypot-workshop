@@ -18,7 +18,7 @@ ARG PAGE_URL=demo.dontthinkjustroll.com
 Now we can simply run the Docker container which will clone the website then serve a copy on port 80.
 ```
 cd ~/snare
-docker-compose up
+docker-compose up --build
 ```
 
 Try and load your web honeypot.
@@ -38,7 +38,7 @@ Try injecting a javascript alert.
 - After you have triggered a sqli attack there will be a db emulator directory in the docker volume. This contains the emulated database for the attack, you can view the contents manually.
 
 ```
-sqlite3 ~/tanner/docker/log/emulators/db/tanner_db
+sqlite3 ~/tanner/docker/tmp/emulators/db/tanner_db
 sqlite> .tables
 sqlite> .schema users
 sqlite> select * from users limit 1;
@@ -50,6 +50,6 @@ sqlite> select * from users limit 1;
 - Once you have triggered a RFI attack there will be a "files" directory with the files pulled down via RFI emulation.
 
 ```
-ls ~/tanner/docker/log/emulators/files/
+ls ~/tanner/docker/tmp/emulators/files/
 ```
 
